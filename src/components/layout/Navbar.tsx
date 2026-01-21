@@ -46,7 +46,7 @@ export default function Navbar() {
                 style={{
                     background: scrolled
                         ? "rgba(10, 17, 40, 0.98)"
-                        : "rgba(10, 17, 40, 0.85)",
+                        : "rgba(10, 17, 40, 0.9)",
                     boxShadow: scrolled
                         ? "0 10px 40px rgba(0, 0, 0, 0.5)"
                         : "0 10px 40px rgba(0, 0, 0, 0.3)",
@@ -72,13 +72,14 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                {/* Cart & Actions */}
-                <div className="flex items-center gap-2 sm:gap-4">
-                    <Link href="/cart" className="relative">
+                {/* Right Side Actions */}
+                <div className="flex items-center gap-3">
+                    {/* Cart - Desktop only */}
+                    <Link href="/cart" className="relative hidden md:block">
                         <motion.div
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[rgba(255,255,255,0.1)] flex items-center justify-center cursor-pointer"
+                            className="w-10 h-10 rounded-full bg-[rgba(255,255,255,0.1)] flex items-center justify-center cursor-pointer"
                         >
                             <svg
                                 width="18"
@@ -104,12 +105,12 @@ export default function Navbar() {
                         </motion.div>
                     </Link>
 
-                    {/* Mobile Menu Button - Hamburger Icon */}
+                    {/* Mobile Menu Button - Prominent Hamburger */}
                     <motion.button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         whileTap={{ scale: 0.9 }}
-                        className="md:hidden w-10 h-10 rounded-full bg-gradient-to-r from-[#FF6B6B] to-[#E91E63] flex items-center justify-center shadow-lg"
-                        aria-label="Toggle menu"
+                        className="md:hidden w-11 h-11 rounded-full bg-gradient-to-r from-[#FF6B6B] to-[#E91E63] flex items-center justify-center shadow-lg shadow-[#FF6B6B]/30"
+                        aria-label="Open menu"
                     >
                         <motion.div
                             animate={mobileMenuOpen ? "open" : "closed"}
@@ -117,27 +118,30 @@ export default function Navbar() {
                         >
                             <motion.span
                                 variants={{
-                                    closed: { rotate: 0, y: 0 },
-                                    open: { rotate: 45, y: 7 },
+                                    closed: { rotate: 0, y: 0, width: 18 },
+                                    open: { rotate: 45, y: 7, width: 18 },
                                 }}
                                 transition={{ duration: 0.3 }}
-                                className="w-5 h-[2px] bg-white block origin-center"
+                                className="h-[2.5px] bg-white block rounded-full origin-center"
+                                style={{ width: 18 }}
                             />
                             <motion.span
                                 variants={{
-                                    closed: { opacity: 1, scaleX: 1 },
-                                    open: { opacity: 0, scaleX: 0 },
+                                    closed: { opacity: 1, scaleX: 1, width: 18 },
+                                    open: { opacity: 0, scaleX: 0, width: 18 },
                                 }}
                                 transition={{ duration: 0.2 }}
-                                className="w-5 h-[2px] bg-white block"
+                                className="h-[2.5px] bg-white block rounded-full"
+                                style={{ width: 18 }}
                             />
                             <motion.span
                                 variants={{
-                                    closed: { rotate: 0, y: 0 },
-                                    open: { rotate: -45, y: -7 },
+                                    closed: { rotate: 0, y: 0, width: 18 },
+                                    open: { rotate: -45, y: -7, width: 18 },
                                 }}
                                 transition={{ duration: 0.3 }}
-                                className="w-5 h-[2px] bg-white block origin-center"
+                                className="h-[2.5px] bg-white block rounded-full origin-center"
+                                style={{ width: 18 }}
                             />
                         </motion.div>
                     </motion.button>
@@ -154,7 +158,7 @@ export default function Navbar() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+                            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 md:hidden"
                         />
 
                         {/* Menu Panel */}
