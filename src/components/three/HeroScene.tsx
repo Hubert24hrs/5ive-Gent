@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial, Sphere, Torus, Box } from "@react-three/drei";
 import * as THREE from "three";
@@ -99,14 +99,17 @@ function FloatingCube({ position, color }: {
 
 function Particles() {
     const count = 100;
-    const positions = useMemo(() => {
+    const [positions, setPositions] = useState<Float32Array | null>(null);
+
+    useEffect(() => {
         const pos = new Float32Array(count * 3);
         for (let i = 0; i < count; i++) {
             pos[i * 3] = (Math.random() - 0.5) * 20;
             pos[i * 3 + 1] = (Math.random() - 0.5) * 20;
             pos[i * 3 + 2] = (Math.random() - 0.5) * 20;
         }
-        return pos;
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setPositions(pos);
     }, []);
 
     const pointsRef = useRef<THREE.Points>(null);
@@ -118,8 +121,11 @@ function Particles() {
     });
 
     const positionAttribute = useMemo(() => {
+        if (!positions) return null;
         return new THREE.BufferAttribute(positions, 3);
     }, [positions]);
+
+    if (!positionAttribute) return null;
 
     return (
         <points ref={pointsRef}>
