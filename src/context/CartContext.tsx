@@ -30,8 +30,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         const savedCart = localStorage.getItem("5ive-gent-cart");
         if (savedCart) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setItems(JSON.parse(savedCart));
         }
+        // Initial load from local storage is safe to ignore dependency warning and set state in effect
+        // as we want to update client state to match local storage after hydration.
     }, []);
 
     // Save cart to localStorage whenever it changes

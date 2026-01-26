@@ -117,7 +117,7 @@ export default function ContactPage() {
                     transition={{ delay: 0.2 }}
                     className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
                 >
-                    {contactInfo.map((info, index) => (
+                    {contactInfo.map((info) => (
                         <motion.a
                             key={info.title}
                             href={info.link}
