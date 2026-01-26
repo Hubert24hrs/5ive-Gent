@@ -212,7 +212,7 @@ export default function Navbar() {
                             </div>
 
                             <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-[rgba(255,255,255,0.1)]">
-                                <p className="text-center text-sm text-gray-500">© 2024 5ive Gent Enterprise</p>
+                                <p className="text-center text-sm text-gray-500">© {new Date().getFullYear()} 5ive Gent Enterprise</p>
                             </div>
                         </motion.div>
                     </>
